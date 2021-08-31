@@ -4,14 +4,39 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Code Quiz</title>
     <link rel="stylesheet" type="text/css" href="./style.css">
 </head>
 <body>
     
-    <h1 class="header">Welcome to Code Quiz!</h1>
-    <p class="text">Test your know how with this coding quiz. </p>
-    <button class="button">start now</button>
+    <div id="start">
+        <h1 class="header">Welcome to Code Quiz!</h1>
+        <p class="text">Test your knowledge.</p>
+        <button class="button" id="button-start">START QUIZ</button>
+    </div>
+
+    <div id="quiz" style="display: none;">
+        <div>
+            <div id="counter"> 
+                <span id="timer">75</span>
+            </div>
+        </div>
+        <div id="question">
+            <p class="text" id="paragraph"></p>
+            <div id="question-buttons"></div>
+        </div>
+    </div>
+
+    <div class="form" id="addscore" style="display: none;">
+        <h1><span id="score"></span></h1>
+        <form>
+            <label>Your Initials:</label>
+            <input type="text" placeholder="Enter initials here" id="inputScore">
+        </form>
+        <div>
+            <button class="button" id="button-score">Submit</button>
+        </div>
+    </div>
 
     <script src="./script.js"></script>
 
