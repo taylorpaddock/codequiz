@@ -8,7 +8,7 @@ var timer = document.getElementById("timer");
 var counter = 75;
 var userScore = document.getElementById("score");
 var buttonScore = document.getElementById("button-score");
-var score = 0; //questionNumber
+var score = 0; 
 var nextQuestion;
 var allScores = [];
 var storedScores = JSON.parse(localStorage.getItem("userData"));
@@ -36,7 +36,6 @@ var questions = [
     choices : ["Return a value", "Accept parameters and return a value", "Accept parameters", "None of the Above"],
     correct : "Accept parameters",
   },
-
 ];
 
 function startQuiz() {
@@ -62,9 +61,13 @@ function gameTimer() {
   }, 1000);
 }
 
-function displayQuestion(questions){
-  quizQuestions.innerHTML = questions.paragraph;
-  questions.choices.forEach(element => {
+function displayQuestion(question){
+  console.log(question);
+  console.log(questions.length);
+  if(currentIndex === questions.length - 1){
+    endGame()};
+  quizQuestions.innerHTML = question.paragraph;
+  question.choices.forEach(element => {
   var button = document.createElement("BUTTON");
   button.className = "button";
   button.innerHTML = element;
@@ -74,12 +77,15 @@ function displayQuestion(questions){
 }
 
 function displaynextQuestion(e){
-  currentIndex++;
+  var nextQuestion = questions[currentIndex];
+  console.log(nextQuestion);
+  console.log(currentIndex);
   if(currentIndex < questions.length){
-      correctResponse(e.target.textContent == questions[currentIndex].correct);
+      correctResponse(e.target.textContent === nextQuestion.correct);
       questionButtons.innerHTML="";
       if(currentIndex < questions.length){    
-          nextQuestion = questions[currentIndex];
+          nextQuestion = questions[currentIndex + 1];
+          currentIndex++;
           displayQuestion(nextQuestion);
       }else {
           currentIndex = 0;
@@ -92,6 +98,7 @@ function displaynextQuestion(e){
 }
 
 function correctResponse(response){
+  console.log(response)
   if(response){
       userScore = score + 10;
       console.log("Good");
@@ -100,9 +107,6 @@ function correctResponse(response){
       timer.innerHTML = counter;
       console.log("Wrong");
   }
-  setTimeout(function(){
-      alert.innerText="";
-      }, 1000);
 }
 
 function endGame() {
