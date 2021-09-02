@@ -64,7 +64,7 @@ function gameTimer() {
 function displayQuestion(question){
   console.log(question);
   console.log(questions.length);
-  if(currentIndex === questions.length - 1){
+  if(currentIndex === questions.length){
     endGame()};
   quizQuestions.innerHTML = question.paragraph;
   question.choices.forEach(element => {
@@ -110,7 +110,7 @@ function correctResponse(response){
 }
 
 function endGame() {
-  userScore.innerText = score;
+  userScore.innerText = userScore;
   addScore.style.display = "flex";
   timer.style.display = "none";
   quiz.style.display = "none";
